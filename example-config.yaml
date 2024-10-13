@@ -1,0 +1,6 @@
+app_port: 8080
+app_mode: development
+base_url_app: http://localhost:8080
+mongodb:
+  uri: mongodb://<user>:<password>@<host>:<port>/
+  dbname: el_shrtn

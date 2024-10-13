@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: el-shrtn
+    volumes:
+      - ${PWD}/config.yaml:/app/config.yaml
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - '8081:27017'
+    volumes:
+      - mongo-volume:/data/db
+    restart: on-failure:3
+
+volumes:
+  mongo-volume:
